@@ -1,14 +1,14 @@
 {
-  "name": "sf-npm-package",
+  "name": "user-group-avatar-lwc",
   "private": false,
   "version": "1.0.0",
   "publishConfig": {
     "access": "public"
   },
-  "description": "An app",
+  "description": "User Group Avatar LWC is a Lightning Web Component that displays the avatar of a user group in Salesforce. It fetches the avatar image based on the group ID and renders it in a visually appealing way.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wisefoxme/sf-npm-package-template.git"
+    "url": "git+https://github.com/wisefoxme/user-group-avatar-lwc.git"
   },
   "author": {
     "name": "John Doe",
@@ -23,8 +23,9 @@
     "lightning-web-components",
     "lightning",
     "sfdx",
-    "calendar",
-    "event",
+    "group",
+    "avatar",
+    "user",
     "component"
   ],
   "scripts": {
