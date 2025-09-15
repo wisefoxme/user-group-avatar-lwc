@@ -6,6 +6,10 @@ This repository contains a Lightning Web Component (LWC) that displays the avata
 
 ![User Group Avatar Demo](assets/view.gif)
 
+And of course there's a square variant:
+
+![User Group Avatar Square Demo](assets/square-variant.png)
+
 ## Features
 
 Display the avatars of group members.
