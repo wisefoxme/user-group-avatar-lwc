@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>User Group Avatar Usage Sample</masterLabel>
+    <description
+  >A sample component to demonstrate the usage of User Group Avatar component.</description>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property
+        name="groupName"
+        type="String"
+        label="Group API name"
+        default="AllInternalUsers"
+      />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

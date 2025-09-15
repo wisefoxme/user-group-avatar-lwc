@@ -13,7 +13,7 @@ public without sharing class UserGroupAvatarController {
     public static Group getGroupById(Id groupId) {
         try {
             return [
-                SELECT Id, Name, Description, Type, OwnerId
+                SELECT Id, DeveloperName, Name, Description, Type, OwnerId
                 FROM Group
                 WHERE Id = :groupId
                 LIMIT 1
@@ -32,9 +32,9 @@ public without sharing class UserGroupAvatarController {
     public static Group getGroupByName(String groupName) {
         try {
             return [
-                SELECT Id, Name, Description, Type, OwnerId
+                SELECT Id, DeveloperName, Name, Description, Type, OwnerId
                 FROM Group
-                WHERE Name = :groupName
+                WHERE DeveloperName = :groupName
                 LIMIT 1
             ];
         } catch (Exception e) {
@@ -102,13 +102,44 @@ public without sharing class UserGroupAvatarController {
                 SELECT
                     TYPEOF UserOrGroup
                         WHEN User THEN Id, Name, Email, SmallPhotoUrl
-                        WHEN Group THEN Id, Name, OwnerId
+                        WHEN Group THEN Id, DeveloperName, Name, OwnerId
                     END
                 FROM GroupMember
-                WHERE GroupId = :groupIdOrName OR Group.Name = :groupIdOrName
+                WHERE
+                    GroupId = :groupIdOrName
+                    OR Group.DeveloperName = :groupIdOrName
             ];
 
             return groupMembers;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /**
+     * @description Retrieves the SmallPhotoUrl of a User by their Id.
+     * @param memberId The Id of the User to retrieve the SmallPhotoUrl for.
+     * @return The SmallPhotoUrl of the specified User, or null if not a User
+     */
+    @AuraEnabled(cacheable=true)
+    public static String getMemberPictureUrl(Id memberId) {
+        try {
+            if (memberId == null) {
+                throw new AuraHandledException('Member Id must be provided.');
+            }
+
+            if (memberId.getSobjectType() != User.SObjectType) {
+                return null;
+            }
+
+            User u = [
+                SELECT SmallPhotoUrl
+                FROM User
+                WHERE Id = :memberId
+                LIMIT 1
+            ];
+
+            return u.SmallPhotoUrl;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }

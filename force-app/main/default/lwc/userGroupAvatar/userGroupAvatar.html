@@ -1,1 +1,13 @@
-<template> </template>
+<template>
+  <div class="avatar-group">
+    <template lwc:if={groupMembers} for:each={groupMembers} for:item="member">
+      <c-user-group-avatar-item
+        class="avatar-item avatar-item-retracted slds-var-m-right_xx-small"
+        key={member.Id}
+        group-member-id={member.Id}
+        onhoverstart={handleAvatarHoverStart}
+        onhoverend={handleAvatarHoverEnd}
+      ></c-user-group-avatar-item>
+    </template>
+  </div>
+</template>

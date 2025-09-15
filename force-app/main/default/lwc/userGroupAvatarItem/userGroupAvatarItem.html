@@ -1,0 +1,12 @@
+<template>
+  <lightning-avatar
+    alternative-text={name}
+    initials={initials}
+    lwc:if={_value}
+    size="large"
+    src={userPhotoUrl}
+    variant="circle"
+    onmouseenter={handleMouseEnter}
+    onmouseleave={handleMouseLeave}
+  ></lightning-avatar>
+</template>

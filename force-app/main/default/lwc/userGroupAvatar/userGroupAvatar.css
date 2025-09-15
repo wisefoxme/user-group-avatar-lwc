@@ -1,0 +1,29 @@
+.avatar-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.avatar-item {
+  position: relative;
+
+  /* Adjust this value for more/less overlap */
+  z-index: 1;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+}
+
+.avatar-item-retracted {
+  margin-left: -28px;
+  transition: margin-left 0.3s ease;
+}
+
+.avatar-item-hovered {
+  /* animate margin to zero */
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+.avatar-item:first-child {
+  margin-left: 0;
+}

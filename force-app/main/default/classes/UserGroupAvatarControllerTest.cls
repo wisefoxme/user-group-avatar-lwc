@@ -5,7 +5,11 @@ private class UserGroupAvatarControllerTest {
         // Test data setup
         Group g;
         System.runAs(new User(Id = UserInfo.getUserId())) {
-            g = new Group(Name = 'Test Group', Type = 'Regular');
+            g = new Group(
+                Name = 'Test Group',
+                DeveloperName = 'Test_Group',
+                Type = 'Regular'
+            );
             insert g;
         }
 
@@ -24,13 +28,17 @@ private class UserGroupAvatarControllerTest {
         // Test data setup
         Group g;
         System.runAs(new User(Id = UserInfo.getUserId())) {
-            g = new Group(Name = 'Test Group', Type = 'Regular');
+            g = new Group(
+                Name = 'Test Group',
+                DeveloperName = 'Test_Group',
+                Type = 'Regular'
+            );
             insert g;
         }
 
         // Actual test
         Test.startTest();
-        Group result = UserGroupAvatarController.getGroupByName('Test Group');
+        Group result = UserGroupAvatarController.getGroupByName('Test_Group');
         Test.stopTest();
 
         // Asserts
@@ -46,7 +54,11 @@ private class UserGroupAvatarControllerTest {
         User u;
         GroupMember gm;
         System.runAs(new User(Id = UserInfo.getUserId())) {
-            g = new Group(Name = 'Test Group', Type = 'Regular');
+            g = new Group(
+                Name = 'Test Group',
+                DeveloperName = 'Test_Group',
+                Type = 'Regular'
+            );
             insert g;
 
             u = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId() LIMIT 1];
@@ -61,7 +73,7 @@ private class UserGroupAvatarControllerTest {
             g.Id
         );
         List<GroupMember> membersByName = UserGroupAvatarController.getGroupMembers(
-            'Test Group'
+            'Test_Group'
         );
         Test.stopTest();
 
@@ -86,7 +98,7 @@ private class UserGroupAvatarControllerTest {
             g.Id
         );
         UserGroupAvatarController.GroupInfo groupInfoByName = UserGroupAvatarController.getGroupInformation(
-            'Test Group'
+            'Test_Group'
         );
 
         Assert.isNotNull(
