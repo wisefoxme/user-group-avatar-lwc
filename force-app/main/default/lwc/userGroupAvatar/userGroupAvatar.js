@@ -4,11 +4,12 @@ import { api, LightningElement, wire } from "lwc";
 import GROUP_NAME_FIELD from "@salesforce/schema/Group.Name";
 
 export default class UserGroupAvatar extends LightningElement {
-  @api recordId;
+  @api avatarBorderVariant = "circle";
   @api fallbackIconName = "standard:user";
   @api maxAvatars = 5;
-  @api variant;
+  @api recordId;
   @api retractionDistance = "medium";
+  @api variant;
   groupName;
   _label;
   groupMembers = [];

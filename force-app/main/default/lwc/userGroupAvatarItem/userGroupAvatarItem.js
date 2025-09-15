@@ -12,6 +12,7 @@ import USER_PHOTO_FIELD from "@salesforce/schema/User.SmallPhotoUrl";
  * The inner item component to display a user or group member avatar.
  */
 export default class UserGroupAvatarItem extends LightningElement {
+  @api avatarBorderVariant = "circle";
   @api groupMemberId;
   @api retractionDistance = "medium";
   _value;

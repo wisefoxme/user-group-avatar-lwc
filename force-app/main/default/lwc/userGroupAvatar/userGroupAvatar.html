@@ -14,11 +14,12 @@
           for:item="member"
         >
           <c-user-group-avatar-item
+            avatar-border-variant={avatarBorderVariant}
             class="avatar-item avatar-item-retracted slds-var-m-right_xx-small"
-            key={member.Id}
             group-member-id={member.Id}
-            onhoverstart={handleAvatarHoverStart}
+            key={member.Id}
             onhoverend={handleAvatarHoverEnd}
+            onhoverstart={handleAvatarHoverStart}
           ></c-user-group-avatar-item>
         </template>
       </div>
