@@ -1,5 +1,19 @@
 <template>
   <div class="slds-box slds-theme_default">
-    <c-user-group-avatar record-id={groupId}></c-user-group-avatar>
+    <div class="slds-var-m-around_medium">
+      <c-user-group-avatar record-id={groupId}></c-user-group-avatar>
+    </div>
+    <div class="slds-var-m-around_medium">
+      <c-user-group-avatar
+        record-id={groupId}
+        max-avatars="1"
+      ></c-user-group-avatar>
+    </div>
+    <div class="slds-var-m-around_medium">
+      <c-user-group-avatar
+        record-id={groupId}
+        label="Team Members"
+      ></c-user-group-avatar>
+    </div>
   </div>
 </template>

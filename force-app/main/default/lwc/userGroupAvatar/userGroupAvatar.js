@@ -5,6 +5,7 @@ export default class UserGroupAvatar extends LightningElement {
   @api recordId;
   @api fallbackIconName = "standard:user";
   @api maxAvatars = 5;
+  @api label;
   groupMembers = [];
 
   @wire(getGroupMembers, { groupIdOrName: "$recordId" })

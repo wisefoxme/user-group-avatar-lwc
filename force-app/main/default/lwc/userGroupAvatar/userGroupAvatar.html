@@ -1,13 +1,27 @@
 <template>
-  <div class="avatar-group">
-    <template lwc:if={groupMembers} for:each={groupMembers} for:item="member">
-      <c-user-group-avatar-item
-        class="avatar-item avatar-item-retracted slds-var-m-right_xx-small"
-        key={member.Id}
-        group-member-id={member.Id}
-        onhoverstart={handleAvatarHoverStart}
-        onhoverend={handleAvatarHoverEnd}
-      ></c-user-group-avatar-item>
-    </template>
+  <div class="slds-form-element">
+    <label
+      class="slds-form-element__label"
+      for="avatar-form-element"
+      lwc:if={label}
+      >{label}</label
+    >
+    <div class="slds-form-element__control">
+      <div class="avatar-group" id="avatar-form-element">
+        <template
+          lwc:if={groupMembers}
+          for:each={groupMembers}
+          for:item="member"
+        >
+          <c-user-group-avatar-item
+            class="avatar-item avatar-item-retracted slds-var-m-right_xx-small"
+            key={member.Id}
+            group-member-id={member.Id}
+            onhoverstart={handleAvatarHoverStart}
+            onhoverend={handleAvatarHoverEnd}
+          ></c-user-group-avatar-item>
+        </template>
+      </div>
+    </div>
   </div>
 </template>
