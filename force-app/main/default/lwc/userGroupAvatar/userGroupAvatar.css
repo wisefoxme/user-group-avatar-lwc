@@ -14,8 +14,21 @@
 }
 
 .avatar-item-retracted {
-  margin-left: -28px;
+  /* get margin from property retraction-distance */
+  margin-left: var(--retraction-distance, -28px);
   transition: margin-left 0.3s ease;
+}
+
+.avatar-item_distance-small {
+  margin-left: -42px;
+}
+
+.avatar-item_distance-medium {
+  margin-left: -28px;
+}
+
+.avatar-item_distance-large {
+  margin-left: -14px;
 }
 
 .avatar-item-hovered {

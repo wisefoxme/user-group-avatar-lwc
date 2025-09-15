@@ -120,5 +120,45 @@ describe("c-user-group-avatar", () => {
       const labelEl = element.shadowRoot.querySelector("label");
       expect(labelEl).toBeNull();
     });
+
+    it("should apply the retraction distance styles when retractionDistance is set", async () => {
+      // Arrange
+      const element = createElement("c-user-group-avatar", {
+        is: UserGroupAvatar
+      });
+      element.recordId = "00Gxx0000004XXXXAA"; // Example Group Id
+      element.retractionDistance = "large";
+
+      // Act
+      document.body.appendChild(element);
+
+      getGroupMembers.emit([
+        {
+          Id: "group-member-id-1",
+          Name: "User One"
+        },
+        {
+          Id: "group-member-id-2",
+          Name: "User Two"
+        }
+      ]);
+
+      await Promise.resolve();
+
+      getRecord.emit(GROUP_OBJECT);
+
+      await Promise.resolve();
+
+      // Assert
+      const avatarItems = element.shadowRoot.querySelectorAll(
+        "c-user-group-avatar-item"
+      );
+      expect(avatarItems.length).toBe(2);
+      avatarItems.forEach((item) => {
+        expect(Array.from(item.classList)).toContain(
+          "avatar-item_distance-large"
+        );
+      });
+    });
   });
 });

@@ -13,6 +13,7 @@ import USER_PHOTO_FIELD from "@salesforce/schema/User.SmallPhotoUrl";
  */
 export default class UserGroupAvatarItem extends LightningElement {
   @api groupMemberId;
+  @api retractionDistance = "medium";
   _value;
   userOrGroupValue;
   memberId;

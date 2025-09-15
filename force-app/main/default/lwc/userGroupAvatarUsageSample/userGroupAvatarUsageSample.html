@@ -8,18 +8,33 @@
         record-id={groupId}
         max-avatars="1"
         variant="label-hidden"
+        label="Maximum 1 avatar shown"
       ></c-user-group-avatar>
     </div>
     <div class="slds-var-m-around_medium">
       <c-user-group-avatar
         record-id={groupId}
-        label="Team Members"
+        label="Custom group label"
       ></c-user-group-avatar>
     </div>
     <div class="slds-var-m-around_medium">
       <c-user-group-avatar
         record-id="All_Pilots"
         label="All pilots"
+      ></c-user-group-avatar>
+    </div>
+    <div class="slds-var-m-around_medium">
+      <c-user-group-avatar
+        record-id="All_Pilots"
+        label="Retraction distance small"
+        retraction-distance="small"
+      ></c-user-group-avatar>
+    </div>
+    <div class="slds-var-m-around_medium">
+      <c-user-group-avatar
+        record-id="All_Pilots"
+        label="Retraction distance large"
+        retraction-distance="large"
       ></c-user-group-avatar>
     </div>
   </div>

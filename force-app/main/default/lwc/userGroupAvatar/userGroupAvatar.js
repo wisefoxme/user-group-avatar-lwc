@@ -8,9 +8,11 @@ export default class UserGroupAvatar extends LightningElement {
   @api fallbackIconName = "standard:user";
   @api maxAvatars = 5;
   @api variant;
+  @api retractionDistance = "medium";
   groupName;
   _label;
   groupMembers = [];
+  shouldReloadStyles = false;
 
   @api
   get label() {
@@ -28,6 +30,7 @@ export default class UserGroupAvatar extends LightningElement {
   wiredGroupMembers({ error, data }) {
     if (data) {
       this.groupMembers = data.slice(0, this.maxAvatars);
+      this.shouldReloadStyles = true;
     } else if (error) {
       console.error("Error fetching group members:", error);
     }
@@ -37,9 +40,19 @@ export default class UserGroupAvatar extends LightningElement {
   wiredGroupName({ error, data }) {
     if (data) {
       this.groupName = getFieldValue(data, GROUP_NAME_FIELD);
+      this.shouldReloadStyles = true;
     } else if (error) {
       console.error("Error fetching group name:", error);
     }
+  }
+
+  renderedCallback() {
+    if (!this.shouldReloadStyles) {
+      return;
+    }
+
+    this._setRetractionDistanceStyles();
+    this.shouldReloadStyles = false;
   }
 
   handleAvatarHoverStart() {
@@ -49,6 +62,8 @@ export default class UserGroupAvatar extends LightningElement {
       item.classList.add("avatar-item-hovered");
       item.classList.remove("avatar-item-retracted");
     });
+
+    this.shouldReloadStyles = true;
   }
 
   handleAvatarHoverEnd() {
@@ -57,6 +72,26 @@ export default class UserGroupAvatar extends LightningElement {
     items.forEach((item) => {
       item.classList.add("avatar-item-retracted");
       item.classList.remove("avatar-item-hovered");
+    });
+
+    this.shouldReloadStyles = true;
+  }
+
+  _setRetractionDistanceStyles() {
+    if (!this.retractionDistance) return;
+
+    const items = this.template.querySelectorAll("c-user-group-avatar-item");
+    const classToApply = `avatar-item_distance-${this.retractionDistance}`;
+
+    items.forEach((item) => {
+      item.classList.forEach((cls) => {
+        if (cls.startsWith("avatar-item_distance-")) {
+          item.classList.remove(cls);
+        }
+      });
+
+      // add the new distance class
+      item.classList.add(classToApply);
     });
   }
 }
